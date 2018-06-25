@@ -10,6 +10,7 @@ class OneSignalClient
 
     const ENDPOINT_NOTIFICATIONS = "/notifications";
     const ENDPOINT_PLAYERS = "/players";
+    const MAX_USER_PER_REQUEST = 2000;
 
     protected $client;
     protected $headers;
@@ -88,7 +89,8 @@ class OneSignalClient
         return $this;
     }
 
-    public function sendNotificationToUser($message, $userId, $url = null, $data = null, $buttons = null, $schedule = null, $headings = null, $subtitle = null) {
+    public function sendNotificationToUsers($message, $userIds, $url = null, $data = null, $buttons = null, $schedule = null, $headings = null, $subtitle = null) 
+    {        
         $contents = array(
             "en" => $message
         );
@@ -96,7 +98,6 @@ class OneSignalClient
         $params = array(
             'app_id' => $this->appId,
             'contents' => $contents,
-            'include_player_ids' => is_array($userId) ? $userId : array($userId)
         );
 
         if (isset($url)) {
@@ -127,7 +128,12 @@ class OneSignalClient
             );
         }
 
-        $this->sendNotificationCustom($params);
+        $userIds = is_array($userIds) ? $userIds : array($userIds);
+        $partialUserIds = array_chunk($userIds, self::MAX_USER_PER_REQUEST, $preserve_array_key = FALSE);
+        foreach( $partialUserIds as $ids ) {
+            $include_player_ids['include_player_ids'] = $ids;
+            $this -> sendNotificationCustom( $params );
+        }
     }
 
     public function sendNotificationUsingTags($message, $tags, $url = null, $data = null, $buttons = null, $schedule = null, $headings = null, $subtitle = null) {
