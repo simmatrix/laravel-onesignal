@@ -1,5 +1,7 @@
 #  OneSignal Push Notifications for Laravel 5
 
+> This forked version chunk up 2000 users to be processed per REST API call. In my opinion this part should be handled by the package instead of in our application side. This is forked from the current version 0.9.9 of the original repo.
+
 ## Introduction
 
 This is a simple OneSignal wrapper library for Laravel. It simplifies the basic notification flow with the defined methods. You can send a message to all users or you can notify a single user. 
@@ -13,8 +15,6 @@ First, you'll need to require the package with Composer:
 ```sh
 composer require berkayk/onesignal-laravel
 ```
-
-Aftwards, run `composer update` from your command line.
 
 Then, update `config/app.php` by adding an entry for the service provider.
 
@@ -68,9 +68,9 @@ You can easily send a message to all registered users with the command
 
 You can send a message based on a set of tags with the command
 
-#####Example 1:
+##### Example 1:
     OneSignal::sendNotificationUsingTags("Some Message", array(["field" => "email", "relation" => "=", "value" => "someone@example.com"]), $url = null, $data = null, $buttons = null, $schedule = null);
-#####Example 2:
+##### Example 2:
     OneSignal::sendNotificationUsingTags("Some Message", array(["field" => "session_count", "relation" => ">", "value" => '2']), $url = null, $data = null, $buttons = null, $schedule = null);
 
 ### Sending a Notification To A Specific User
