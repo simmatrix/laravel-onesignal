@@ -10,7 +10,7 @@ Before you start installing this service, please complete your OneSignal setup a
 
 ## Installation
 
-> As this is a forked repository, hence, the installation is slightly different compared to installing the original package.
+> As this is a forked repository, hence, the installation is slightly different compared to installing the original package. If you have previously installed the original package. You would need to `composer remove berkayk/onesignal-laravel`.
 
 First, you'll need to edit your `composer.json` file
 
@@ -27,7 +27,10 @@ First, you'll need to edit your `composer.json` file
     }
 }
 ```
+
 Then, you would have to run `composer install` to add this dependency into your application.
+
+> But if you did install the original package before installing this forked repo, then you need to run `composer update berkayk/onesignal-laravel` instead of `composer install` in order to update your composer.lock file.
 
 After you have done, you would need to update `config/app.php` by adding an entry for the service provider.
 
