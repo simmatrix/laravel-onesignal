@@ -10,13 +10,26 @@ Before you start installing this service, please complete your OneSignal setup a
 
 ## Installation
 
-First, you'll need to require the package with Composer:
+> As this is a forked repository, hence, the installation is slightly different compared to installing the original package.
+
+First, you'll need to edit your `composer.json` file
 
 ```sh
-composer require berkayk/onesignal-laravel
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/simmatrix/laravel-onesignal"
+        }
+    ],
+    "require": {
+        "berkayk/onesignal-laravel": "dev-enhancement"
+    }
+}
 ```
+Then, you would have to run `composer install` to add this dependency into your application.
 
-Then, update `config/app.php` by adding an entry for the service provider.
+After you have done, you would need to update `config/app.php` by adding an entry for the service provider.
 
 ```php
 'providers' => [
