@@ -93,7 +93,7 @@ You can send a message based on a set of tags with the command
 
 After storing a user's tokens in a table, you can simply send a message with
 
-    OneSignal::sendNotificationToUser("Some Message", $userId, $url = null, $data = null, $buttons = null, $schedule = null);
+    OneSignal::sendNotificationToUsers("Title", "Some Message", $userId, $url = null, $data = null, $buttons = null, $schedule = null);
     
 `$userId` is the user's unique id where he/she is registered for notifications. Read https://documentation.onesignal.com/docs/web-push-tagging-guide for additional details.
 `$url` , `$data` , `$buttons` and `$schedule` fields are exceptional. If you provide a `$url` parameter, users will be redirecting to that url.
