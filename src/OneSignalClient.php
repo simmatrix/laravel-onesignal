@@ -136,7 +136,7 @@ class OneSignalClient
         $userIds = is_array($userIds) ? $userIds : array($userIds);
         $partialUserIds = array_chunk($userIds, self::MAX_USER_PER_REQUEST, $preserve_array_key = FALSE);
         foreach( $partialUserIds as $ids ) {
-            $include_player_ids['include_player_ids'] = $ids;
+            $params['include_player_ids'] = $ids;
             $this -> sendNotificationCustom( $params );
         }
     }
