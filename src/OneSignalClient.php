@@ -89,20 +89,15 @@ class OneSignalClient
         return $this;
     }
 
-    public function sendNotificationToUsers($title, $message, $userIds, $url = null, $data = null, $buttons = null, $schedule = null, $headings = null, $subtitle = null) 
+    public function sendNotificationToUsers($message, $userIds, $url = null, $data = null, $buttons = null, $schedule = null, $headings = null, $subtitle = null) 
     {        
         $contents = array(
             "en" => $message
         );
 
-        $title = array(
-            "en" => $title
-        );
-
         $params = array(
             'app_id' => $this->appId,
             'contents' => $contents,
-            'headings' => $title,
         );
 
         if (isset($url)) {
